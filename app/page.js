@@ -1,9 +1,10 @@
+import Welcome from "./components/welcome/Welcome";
 
 export default function Home() {
 
   return (
-    <div>
-      
-    </div>
+    <>
+      <Welcome />
+    </>
   );
 };

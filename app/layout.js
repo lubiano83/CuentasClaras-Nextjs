@@ -1,5 +1,6 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Footer from "./components/footer/Footer";
+import Menu from "./components/menu/Menu";
+import Navbar from "./components/navbar/Navbar";
 import { AuthProvider } from "./context/AuthContext";
 import "./globals.css";
 
@@ -15,7 +16,12 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen grid grid-rows-[auto_1fr_auto]">
         <AuthProvider>
           <Navbar />
-          {children}
+          <div className="flex justify-start items-center w-full">
+            <Menu />
+            <div className="w-full pl-52">
+              {children}
+            </div>
+          </div>
           <Footer />
         </AuthProvider>
       </body>

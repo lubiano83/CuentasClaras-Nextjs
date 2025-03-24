@@ -20,7 +20,7 @@ export async function POST(request) {
     const passwordMatch = await isValidPassword(user, String(password));
     if (!passwordMatch) return NextResponse.json({ message: "La contraseña es incorrecta.." }, { status: 401 });
     const token = jwt.sign({ nombre: user.nombre.toLowerCase(), email: user.email, id: user.id, role: user.role }, process.env.COOKIE_KEY, { expiresIn: "1h" });
-    cookieStore.set({ name: process.env.COOKIE_NAME, value: token, httpOnly: true, maxAge: 3600, secure: process.env.NODE_ENV === "production", sameSite: "none", path: "/" });
+    cookieStore.set({ name: process.env.COOKIE_NAME, value: token, httpOnly: true, maxAge: 3600, secure: false, sameSite: "lax", path: "/" });
     return NextResponse.json({ message: "Login realizado con éxito", token }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Error interno del servidor.", error: error.message },{ status: 500 });

@@ -14,15 +14,15 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    
-  }, []);
+    if (email) {
+        profileUser();
+    }
+  }, [email]);
 
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
       await loginUser(email, password);
-      setEmail("");
-      setPassword("");
       alert("Login realizado con exito..");
       router.push("/");
     } catch (error) {
@@ -55,14 +55,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleProfile = async() => {
-    try {
-      await profileUser();
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
   const loginUser = async (email, password) => {
     try {
       const response = await fetch("/api/auth/login", {
@@ -76,6 +68,7 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
       setLogged(true);
+      setEmail(email);
     } catch (error) {
       throw new Error(error.message);
     }
@@ -115,7 +108,7 @@ export const AuthProvider = ({ children }) => {
 
   const profileUser = async() => {
     try {
-      const response = await fetch(`/api/users/`, {
+      const response = await fetch(`/api/users/email/${email}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -131,7 +124,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ logged, user, nombre, setNombre, email, setEmail, password, setPassword, handleLogin, handleLogout, handleRegister, handleProfile }}>
+    <AuthContext.Provider value={{ logged, user, nombre, setNombre, email, setEmail, password, setPassword, handleLogin, handleLogout, handleRegister }}>
       {children}
     </AuthContext.Provider>
   );

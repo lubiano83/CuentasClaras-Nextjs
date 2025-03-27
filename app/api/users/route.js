@@ -8,7 +8,7 @@ export async function GET() {
         const users = await userDao.getUsers();
         return NextResponse.json({ message: "Todos los usuarios..", users }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
     }
 };
 
@@ -17,6 +17,6 @@ export async function DELETE() {
       const users = await userDao.truncateUsers();
       return NextResponse.json({ message: "Usuarios eliminados con exito..", users }, { status: 200 });
     } catch (error) {
-      return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+      return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
     }
 };

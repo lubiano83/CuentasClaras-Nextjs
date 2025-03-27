@@ -18,6 +18,6 @@ export async function POST(request) {
         const payload = await userDao.getUserByEmail(email.toLowerCase());
         return NextResponse.json({ message: "Usuario registrado con exito..", payload }, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
     };
 };

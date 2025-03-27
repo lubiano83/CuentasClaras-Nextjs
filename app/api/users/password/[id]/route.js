@@ -15,6 +15,6 @@ export async function PATCH(request, {params}) {
     await userDao.changePassword(id, hashedPassword);
     return NextResponse.json({ message: "Contraseña actualizada correctamente.." }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+    return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
   }
 };

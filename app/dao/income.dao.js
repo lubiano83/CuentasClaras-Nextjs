@@ -9,7 +9,7 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
     async getIncomeById(id) {
         try {
@@ -18,7 +18,7 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
     async getIncomeById(id) {
         try {
@@ -28,7 +28,7 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
     async createIncome(data) {
         try {
@@ -38,9 +38,9 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
-    async updateIncome(id, data) {
+    async updateIncomeById(id, data) {
         try {
             const { descripcion, monto, fecha } = data;
             const [result] = await pool.query("UPDATE ingresos SET descripcion = ?, monto = ?, fecha = ? WHERE id = ?", [descripcion, monto, fecha, id]);
@@ -48,16 +48,16 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
-    async deleteIncome(id) {
+    async deleteIncomeById(id) {
         try {
             const [result] = await pool.query("DELETE FROM ingresos WHERE id = ?", [id]);
             return result.affectedRows > 0;
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
 
     async deleteIngcomeByUserId(id) {
         try {
@@ -67,5 +67,15 @@ export default class IncomeDao {
         } catch (error) {
             throw new Error(`dao: ${error.message}`);
         }
-    }
+    };
+
+    async deleteAllIncomes() {
+        try {
+          const [result] = await pool.query("DELETE FROM ingresos");
+          return result.affectedRows > 0;
+        } catch (error) {
+          throw new Error(`dao: ${error.message}`);
+        }
+    };
+      
 };

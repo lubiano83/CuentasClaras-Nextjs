@@ -13,6 +13,6 @@ export async function DELETE() {
         cookieStore.set({ name: process.env.COOKIE_NAME, value: "", maxAge: 0, httpOnly: true, secure: false, sameSite: "lax", path: "/" });
         return NextResponse.json({ message: "Logout realizado con exito.." });
     } catch (error) {
-        return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+        return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
     }
 }

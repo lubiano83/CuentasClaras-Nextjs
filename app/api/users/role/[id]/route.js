@@ -14,6 +14,6 @@ export async function PATCH(request, {params}) {
     await userDao.changeRole(id, role);
     return NextResponse.json({ message: "Role actualizado correctamente.." }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "Error interno del servidor.", error:error.message }, { status: 500 });
+    return NextResponse.json({ message: "Error interno del servidor.", error: error.message }, { status: 500 });
   }
 };
